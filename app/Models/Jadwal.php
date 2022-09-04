@@ -9,7 +9,7 @@ class Jadwal extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $fillable = ['konseling_id', 'konselor_id', 'waktu', 'tanggal'];
+    protected $fillable = ['konseling_id', 'konselor_id', 'waktu', 'tanggal', 'tempat'];
 
     public function user()
     {

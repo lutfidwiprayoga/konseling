@@ -86,6 +86,7 @@
                                                         <th>Topik</th>
                                                         <th>Tanggal</th>
                                                         <th>Waktu</th>
+                                                        <th>Tempat</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -100,6 +101,7 @@
                                                             <td>{{ $row->konseling->topik }}</td>
                                                             <td>{{ date('l, d F Y', strtotime($row->tanggal)) }}</td>
                                                             <td>{{ date('H:i', strtotime($row->waktu)) }} WIB</td>
+                                                            <td>{{ $row->tempat }}</td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -184,6 +186,12 @@
                                                 <label class="col-sm-4 col-form-label">Waktu</label>
                                                 <div class="col-sm-8">
                                                     <input type="time" class="form-control" name="waktu" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-0">
+                                                <label class="col-sm-4 col-form-label">Tempat</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" name="tempat" required>
                                                 </div>
                                             </div>
                                         </div>

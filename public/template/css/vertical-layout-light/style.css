@@ -30051,7 +30051,7 @@ div.tagsinput span.tag a {
     margin-right: 0;
     margin-left: 0;
     margin-bottom: 0;
-    background: #187498;
+    /* background: #187498; */
   }
   .sidebar-icon-only .sidebar .nav .nav-item .nav-link i.menu-arrow {
     display: none;

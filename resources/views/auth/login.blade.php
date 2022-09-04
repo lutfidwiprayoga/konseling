@@ -33,9 +33,6 @@
                             class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">MASUK</button>
                     </div>
                     <div class="my-2 d-flex justify-content-between align-items-center">
-                        <div class="form-check">
-                            Belum Punya Akun? <a href="{{ route('register') }}" class="text-primary">Buat Akun</a>
-                        </div>
                         <a href="{{ route('password.request') }}" class="auth-link text-primary">Forgot password?</a>
                     </div>
                 </form>

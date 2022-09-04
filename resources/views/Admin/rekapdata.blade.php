@@ -46,6 +46,7 @@
                                                         <th>Topik</th>
                                                         <th>Tanggal Bimbingan</th>
                                                         <th>Waktu Bimbingan</th>
+                                                        <th>Tempat Bimbingan</th>
                                                         <th>Status Konseling</th>
                                                     </tr>
                                                 </thead>
@@ -60,8 +61,10 @@
                                                             <td>{{ $row->konseling->kelas }}</td>
                                                             <td>{{ $row->jadwal->user->name }}</td>
                                                             <td>{{ $row->konseling->topik }}</td>
-                                                            <td>{{ date('l, d F Y', strtotime($row->tanggal)) }}</td>
-                                                            <td>{{ date('H:i', strtotime($row->waktu)) }} WIB</td>
+                                                            <td>{{ date('l, d F Y', strtotime($row->jadwal->tanggal)) }}
+                                                            </td>
+                                                            <td>{{ date('H:i', strtotime($row->jadwal->waktu)) }} WIB</td>
+                                                            <td>{{ $row->jadwal->tempat }}</td>
                                                             <td><button
                                                                     class="btn btn-inverse-success btn-sm">{{ $row->konseling->status_konseling }}</button>
                                                             </td>
@@ -92,6 +95,7 @@
                                                         <th>Topik</th>
                                                         <th>Tanggal Bimbingan</th>
                                                         <th>Waktu Bimbingan</th>
+                                                        <th>Tempat Bimbingan</th>
                                                         <th>Status Konseling</th>
                                                         <th>Hasil Bimbingan</th>
                                                     </tr>
@@ -107,8 +111,10 @@
                                                             <td>{{ $row->konseling->kelas }}</td>
                                                             <td>{{ $row->jadwal->user->name }}</td>
                                                             <td>{{ $row->konseling->topik }}</td>
-                                                            <td>{{ date('l, d F Y', strtotime($row->tanggal)) }}</td>
-                                                            <td>{{ date('H:i', strtotime($row->waktu)) }} WIB</td>
+                                                            <td>{{ date('l, d F Y', strtotime($row->jadwal->tanggal)) }}
+                                                            </td>
+                                                            <td>{{ date('H:i', strtotime($row->jadwal->waktu)) }} WIB</td>
+                                                            <td>{{ $row->jadwal->tempat }}</td>
                                                             <td><button
                                                                     class="btn btn-inverse-success btn-sm">{{ $row->konseling->status_konseling }}</button>
                                                             </td>

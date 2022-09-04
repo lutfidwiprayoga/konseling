@@ -25,7 +25,7 @@ class RekapDataController extends Controller
             ->where('jadwals.status', 'Terdaftar')
             ->where('konselings.status_konseling', 'Selesai')
             ->get();
-        return view('Mahasiswa.Konsultasi.lihatJadwal', compact('belum', 'sudah'));
+        return view('Admin.rekapdata', compact('belum', 'sudah'));
     }
 
     /**

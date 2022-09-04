@@ -33,10 +33,16 @@
                 </a>
             </li>
         @elseif (Auth::user()->role_user == 'admin')
-            <li class="nav-item {{ request()->is('admin/rekapdata*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.index') }}">
+            <li class="nav-item {{ request()->is('admin/rekapdata-admin*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('rekapdata-admin.index') }}">
                     <i class="icon-paper menu-icon"></i>
                     <span class="menu-title">Rekap Data</span>
+                </a>
+            </li>
+            <li class="nav-item {{ request()->is('admin/user*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('user.index') }}">
+                    <i class="icon-paper menu-icon"></i>
+                    <span class="menu-title">Data Mahasiswa</span>
                 </a>
             </li>
         @endif

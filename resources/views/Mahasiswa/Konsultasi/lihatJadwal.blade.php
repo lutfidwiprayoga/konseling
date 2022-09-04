@@ -46,6 +46,7 @@
                                                         <th>Topik</th>
                                                         <th>Tanggal Bimbingan</th>
                                                         <th>Waktu Bimbingan</th>
+                                                        <th>Tempat Bimbingan</th>
                                                         <th>Status Konseling</th>
                                                         <th>Bimbingan</th>
                                                     </tr>
@@ -63,6 +64,7 @@
                                                             <td>{{ $row->konseling->topik }}</td>
                                                             <td>{{ date('l, d F Y', strtotime($row->tanggal)) }}</td>
                                                             <td>{{ date('H:i', strtotime($row->waktu)) }} WIB</td>
+                                                            <td>{{ $row->tempat }}</td>
                                                             <td><button
                                                                     class="btn btn-inverse-danger btn-sm">{{ $row->konseling->status_konseling }}</button>
                                                             </td>
@@ -96,6 +98,7 @@
                                                         <th>Topik</th>
                                                         <th>Tanggal Bimbingan</th>
                                                         <th>Waktu Bimbingan</th>
+                                                        <th>Tempat Bimbingan</th>
                                                         <th>Status Konseling</th>
                                                         <th>Hasil Bimbingan</th>
                                                     </tr>
@@ -113,6 +116,7 @@
                                                             <td>{{ $row->konseling->topik }}</td>
                                                             <td>{{ date('l, d F Y', strtotime($row->tanggal)) }}</td>
                                                             <td>{{ date('H:i', strtotime($row->waktu)) }} WIB</td>
+                                                            <td>{{ $row->tempat }}</td>
                                                             <td><button
                                                                     class="btn btn-inverse-success btn-sm">{{ $row->konseling->status_konseling }}</button>
                                                             </td>

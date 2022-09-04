@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\RekapDataController as AdminRekapDataController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\UpdateProfileController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/editprofil', [UpdateProfileController::class, 'edit'])->name('profil.edit');
 Route::post('/editprofil', [UpdateProfileController::class, 'update'])->name('profil.update');
+Route::post('/updatepassword', [UpdateProfileController::class, 'updatePassword'])->name('password.ganti');
 Route::resource('/dashboard', DashboardController::class);
 
 Route::prefix('mahasiswa')->group(function () {
@@ -44,5 +46,6 @@ Route::prefix('konselor')->group(function () {
     Route::get('/rekapdata', [RekapDataController::class, 'index'])->name('konselor.rekapdata');
 });
 Route::prefix('admin')->group(function () {
-    Route::resource('/rekapdata/admin', AdminRekapDataController::class);
+    Route::resource('/rekapdata-admin', AdminRekapDataController::class);
+    Route::resource('/user', UserController::class);
 });

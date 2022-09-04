@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Agu 2022 pada 08.09
+-- Waktu pembuatan: 04 Sep 2022 pada 08.00
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.6
 
@@ -75,6 +75,7 @@ CREATE TABLE `jadwals` (
   `tanggal` date DEFAULT NULL,
   `waktu` time DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tempat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -83,11 +84,11 @@ CREATE TABLE `jadwals` (
 -- Dumping data untuk tabel `jadwals`
 --
 
-INSERT INTO `jadwals` (`id`, `konseling_id`, `konselor_id`, `tanggal`, `waktu`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, '2022-08-22', '10:00:00', 'Terdaftar', '2022-08-17 22:12:25', '2022-08-18 06:32:17'),
-(2, 2, NULL, NULL, NULL, 'Pengajuan', '2022-08-17 22:28:34', '2022-08-17 22:28:34'),
-(3, 3, 2, '2022-08-23', '12:30:00', 'Terdaftar', '2022-08-21 22:35:16', '2022-08-21 22:36:19'),
-(4, 4, 2, '2022-08-26', '14:00:00', 'Terdaftar', '2022-08-21 22:49:22', '2022-08-21 22:50:32');
+INSERT INTO `jadwals` (`id`, `konseling_id`, `konselor_id`, `tanggal`, `waktu`, `status`, `tempat`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, '2022-08-22', '10:00:00', 'Terdaftar', NULL, '2022-08-17 22:12:25', '2022-08-18 06:32:17'),
+(2, 2, NULL, NULL, NULL, 'Pengajuan', NULL, '2022-08-17 22:28:34', '2022-08-17 22:28:34'),
+(3, 3, 2, '2022-08-23', '12:30:00', 'Terdaftar', NULL, '2022-08-21 22:35:16', '2022-08-21 22:36:19'),
+(4, 4, 2, '2022-08-26', '14:00:00', 'Terdaftar', NULL, '2022-08-21 22:49:22', '2022-08-21 22:50:32');
 
 -- --------------------------------------------------------
 
@@ -235,7 +236,8 @@ INSERT INTO `users` (`id`, `nim`, `name`, `email`, `username`, `no_hp`, `role_us
 (2, NULL, 'Agus Mahardika', 'agusmahardika@gmail.com', NULL, NULL, 'konselor', NULL, '$2y$10$rpC3pKXStf9oI2bwNVOuCek.NrT2bZdvM8In6a4.bStprtQss1bx2', NULL, NULL, '2022-08-18 04:28:18', '2022-08-18 04:28:18'),
 (3, NULL, 'Admin', 'admin@gmail.com', 'admin', NULL, 'admin', NULL, '$2y$10$t.QZXbg42TnAcG/atJe0iuX1JK0RG1PIqGXMgotRlPvTsz4ndvEjq', NULL, NULL, '2022-08-18 19:51:11', '2022-08-18 19:51:11'),
 (4, '361955401015', 'Gatot Gan', 'gatot@gmail.com', 'gatot_gan', '081221122211', 'mahasiswa', NULL, '$2y$10$qCgqJei2SdpjW/aKPaSQAuOW9AJ16pNcPZtCORSy8ueIgOfV3WBqC', NULL, 'gatot_gan.png', '2022-08-20 03:20:42', '2022-08-20 05:24:50'),
-(5, '361855401033', 'Prayoga', 'prayoga@gmail.com', 'prayoga00', '082211232123', 'mahasiswa', NULL, '$2y$10$jvRDZsJFqdxhc31NQx9BxuH4PcA1LphwkeHEnv3gcCcJ.iUf6rppS', NULL, 'prayoga00.png', '2022-08-21 22:33:36', '2022-08-21 22:34:50');
+(5, '361855401033', 'Prayoga', 'prayoga@gmail.com', 'prayoga00', '082211232123', 'mahasiswa', NULL, '$2y$10$jvRDZsJFqdxhc31NQx9BxuH4PcA1LphwkeHEnv3gcCcJ.iUf6rppS', NULL, 'prayoga00.png', '2022-08-21 22:33:36', '2022-08-21 22:34:50'),
+(6, '362055401088', 'Samsudin', 'samsudin@gmail.com', 'samsudin_gs', NULL, 'mahasiswa', NULL, '$2y$10$M7q0fqACcVO7yLLAjOxeAe9ep7VUMXAfARW0XWFkEUV/oFYkrwwhG', NULL, NULL, '2022-09-03 05:27:54', '2022-09-03 06:01:04');
 
 --
 -- Indexes for dumped tables
@@ -350,7 +352,7 @@ ALTER TABLE `prodis`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

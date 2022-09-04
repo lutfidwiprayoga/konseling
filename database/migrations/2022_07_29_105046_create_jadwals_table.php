@@ -19,6 +19,7 @@ class CreateJadwalsTable extends Migration
             $table->unsignedBigInteger('konselor_id')->nullable();
             $table->date('tanggal')->nullable();
             $table->time('waktu')->nullable();
+            $table->string('tempat')->nullable();
             $table->string('status');
             $table->timestamps();
         });
