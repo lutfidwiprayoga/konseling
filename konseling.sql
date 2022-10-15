@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Sep 2022 pada 08.00
+-- Waktu pembuatan: 15 Okt 2022 pada 08.16
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.6
 
@@ -86,7 +86,7 @@ CREATE TABLE `jadwals` (
 
 INSERT INTO `jadwals` (`id`, `konseling_id`, `konselor_id`, `tanggal`, `waktu`, `status`, `tempat`, `created_at`, `updated_at`) VALUES
 (1, 1, 2, '2022-08-22', '10:00:00', 'Terdaftar', NULL, '2022-08-17 22:12:25', '2022-08-18 06:32:17'),
-(2, 2, NULL, NULL, NULL, 'Pengajuan', NULL, '2022-08-17 22:28:34', '2022-08-17 22:28:34'),
+(2, 2, 2, '2022-10-19', '13:00:00', 'Terdaftar', 'Ruang Rapat', '2022-08-17 22:28:34', '2022-10-14 22:08:06'),
 (3, 3, 2, '2022-08-23', '12:30:00', 'Terdaftar', NULL, '2022-08-21 22:35:16', '2022-08-21 22:36:19'),
 (4, 4, 2, '2022-08-26', '14:00:00', 'Terdaftar', NULL, '2022-08-21 22:49:22', '2022-08-21 22:50:32');
 
@@ -99,8 +99,6 @@ INSERT INTO `jadwals` (`id`, `konseling_id`, `konselor_id`, `tanggal`, `waktu`, 
 CREATE TABLE `konselings` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `prodi_id` bigint(20) UNSIGNED NOT NULL,
-  `kelas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `topik` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_konseling` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -111,11 +109,11 @@ CREATE TABLE `konselings` (
 -- Dumping data untuk tabel `konselings`
 --
 
-INSERT INTO `konselings` (`id`, `user_id`, `prodi_id`, `kelas`, `topik`, `status_konseling`, `created_at`, `updated_at`) VALUES
-(1, 1, 4, '3B', 'Keuangan', 'Selesai', '2022-08-17 22:12:25', '2022-08-18 21:03:15'),
-(2, 1, 4, '3B', 'Organisasi', NULL, '2022-08-17 22:28:34', '2022-08-17 22:28:34'),
-(3, 5, 9, '3B', 'Keuangan', 'Selesai', '2022-08-21 22:35:16', '2022-08-21 22:48:56'),
-(4, 5, 9, '3B', 'Organisasi', 'Selesai', '2022-08-21 22:49:22', '2022-08-21 22:54:16');
+INSERT INTO `konselings` (`id`, `user_id`, `topik`, `status_konseling`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Keuangan', 'Selesai', '2022-08-17 22:12:25', '2022-08-18 21:03:15'),
+(2, 1, 'Organisasi', 'Belum Selesai', '2022-08-17 22:28:34', '2022-10-14 22:08:06'),
+(3, 5, 'Keuangan', 'Selesai', '2022-08-21 22:35:16', '2022-08-21 22:48:56'),
+(4, 5, 'Organisasi', 'Selesai', '2022-08-21 22:49:22', '2022-08-21 22:54:16');
 
 -- --------------------------------------------------------
 
@@ -218,6 +216,8 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `no_hp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `prodi_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `kelas` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role_user` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -231,13 +231,13 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `nim`, `name`, `email`, `username`, `no_hp`, `role_user`, `email_verified_at`, `password`, `remember_token`, `foto`, `created_at`, `updated_at`) VALUES
-(1, '361955401045', 'Romadhon Priyono', 'romadhon@gmail.com', 'romadhon_pr', '089222912212', 'mahasiswa', '2022-08-17 21:00:40', '$2y$10$7dUoT9Zi9B8wUP0YU4Hh1OUOlWRFGS6FCakI8aVASPhbz50ChCB9W', NULL, 'romadhon_pr.png', '2022-08-17 21:00:40', '2022-08-20 23:21:31'),
-(2, NULL, 'Agus Mahardika', 'agusmahardika@gmail.com', NULL, NULL, 'konselor', NULL, '$2y$10$rpC3pKXStf9oI2bwNVOuCek.NrT2bZdvM8In6a4.bStprtQss1bx2', NULL, NULL, '2022-08-18 04:28:18', '2022-08-18 04:28:18'),
-(3, NULL, 'Admin', 'admin@gmail.com', 'admin', NULL, 'admin', NULL, '$2y$10$t.QZXbg42TnAcG/atJe0iuX1JK0RG1PIqGXMgotRlPvTsz4ndvEjq', NULL, NULL, '2022-08-18 19:51:11', '2022-08-18 19:51:11'),
-(4, '361955401015', 'Gatot Gan', 'gatot@gmail.com', 'gatot_gan', '081221122211', 'mahasiswa', NULL, '$2y$10$qCgqJei2SdpjW/aKPaSQAuOW9AJ16pNcPZtCORSy8ueIgOfV3WBqC', NULL, 'gatot_gan.png', '2022-08-20 03:20:42', '2022-08-20 05:24:50'),
-(5, '361855401033', 'Prayoga', 'prayoga@gmail.com', 'prayoga00', '082211232123', 'mahasiswa', NULL, '$2y$10$jvRDZsJFqdxhc31NQx9BxuH4PcA1LphwkeHEnv3gcCcJ.iUf6rppS', NULL, 'prayoga00.png', '2022-08-21 22:33:36', '2022-08-21 22:34:50'),
-(6, '362055401088', 'Samsudin', 'samsudin@gmail.com', 'samsudin_gs', NULL, 'mahasiswa', NULL, '$2y$10$M7q0fqACcVO7yLLAjOxeAe9ep7VUMXAfARW0XWFkEUV/oFYkrwwhG', NULL, NULL, '2022-09-03 05:27:54', '2022-09-03 06:01:04');
+INSERT INTO `users` (`id`, `nim`, `name`, `email`, `username`, `no_hp`, `prodi_id`, `kelas`, `role_user`, `email_verified_at`, `password`, `remember_token`, `foto`, `created_at`, `updated_at`) VALUES
+(1, '361955401045', 'Romadhon Priyono', 'romadhon@gmail.com', 'romadhon_pr', '089222912212', 1, '3B', 'mahasiswa', '2022-08-17 21:00:40', '$2y$10$7dUoT9Zi9B8wUP0YU4Hh1OUOlWRFGS6FCakI8aVASPhbz50ChCB9W', NULL, 'romadhon_pr.png', '2022-08-17 21:00:40', '2022-08-20 23:21:31'),
+(2, NULL, 'Agus Mahardika', 'agusmahardika@gmail.com', NULL, NULL, NULL, NULL, 'konselor', NULL, '$2y$10$rpC3pKXStf9oI2bwNVOuCek.NrT2bZdvM8In6a4.bStprtQss1bx2', NULL, NULL, '2022-08-18 04:28:18', '2022-08-18 04:28:18'),
+(3, NULL, 'Admin', 'admin@gmail.com', 'admin', NULL, NULL, NULL, 'admin', NULL, '$2y$10$t.QZXbg42TnAcG/atJe0iuX1JK0RG1PIqGXMgotRlPvTsz4ndvEjq', NULL, NULL, '2022-08-18 19:51:11', '2022-08-18 19:51:11'),
+(4, '361955401015', 'Gatot Gan', 'gatot@gmail.com', 'gatot_gan', '081221122211', NULL, NULL, 'mahasiswa', NULL, '$2y$10$qCgqJei2SdpjW/aKPaSQAuOW9AJ16pNcPZtCORSy8ueIgOfV3WBqC', NULL, 'gatot_gan.png', '2022-08-20 03:20:42', '2022-08-20 05:24:50'),
+(5, '361855401033', 'Prayoga', 'prayoga@gmail.com', 'prayoga00', '082211232123', 9, '3B', 'mahasiswa', NULL, '$2y$10$jvRDZsJFqdxhc31NQx9BxuH4PcA1LphwkeHEnv3gcCcJ.iUf6rppS', NULL, 'prayoga00.png', '2022-08-21 22:33:36', '2022-08-21 22:34:50'),
+(6, '362055401088', 'Samsudin', 'samsudin@gmail.com', 'samsudin_gs', NULL, NULL, NULL, 'mahasiswa', NULL, '$2y$10$M7q0fqACcVO7yLLAjOxeAe9ep7VUMXAfARW0XWFkEUV/oFYkrwwhG', NULL, NULL, '2022-09-03 05:27:54', '2022-09-03 06:01:04');
 
 --
 -- Indexes for dumped tables

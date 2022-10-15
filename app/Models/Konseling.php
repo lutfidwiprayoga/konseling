@@ -11,8 +11,6 @@ class Konseling extends Model
     protected $guarded = [];
     protected $fillable = [
         'user_id',
-        'prodi_id',
-        'kelas',
         'topik',
         'status_konseling'
     ];
@@ -20,11 +18,6 @@ class Konseling extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
-    }
-
-    public function prodi()
-    {
-        return $this->belongsTo(Prodi::class, 'prodi_id', 'id');
     }
 
     public function jadwals()

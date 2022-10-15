@@ -16,8 +16,6 @@ class CreateKonselingsTable extends Migration
         Schema::create('konselings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('prodi_id');
-            $table->string('kelas');
             $table->string('topik');
             $table->string('status_konseling')->nullable();
             $table->timestamps();

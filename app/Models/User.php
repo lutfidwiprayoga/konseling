@@ -23,6 +23,8 @@ class User extends Authenticatable
         'email',
         'nim',
         'no_hp',
+        'prodi_id',
+        'kelas',
         'role_user',
         'password',
         'foto',
@@ -47,6 +49,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class);
+    }
     public function konselings()
     {
         return $this->hasMany(Konseling::class);

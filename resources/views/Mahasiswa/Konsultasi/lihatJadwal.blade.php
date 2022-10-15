@@ -58,8 +58,8 @@
                                                             <td>{{ $row->konseling->user->name }}</td>
                                                             <td>{{ $row->konseling->user->nim }}</td>
                                                             <td>{{ $row->konseling->user->no_hp }}</td>
-                                                            <td>{{ $row->konseling->prodi->nama }}</td>
-                                                            <td>{{ $row->konseling->kelas }}</td>
+                                                            <td>{{ $row->konseling->user->prodi->nama }}</td>
+                                                            <td>{{ $row->konseling->user->kelas }}</td>
                                                             <td>{{ $row->jadwal->user->name }}</td>
                                                             <td>{{ $row->konseling->topik }}</td>
                                                             <td>{{ date('l, d F Y', strtotime($row->tanggal)) }}</td>
@@ -110,8 +110,8 @@
                                                             <td>{{ $row->konseling->user->name }}</td>
                                                             <td>{{ $row->konseling->user->nim }}</td>
                                                             <td>{{ $row->konseling->user->no_hp }}</td>
-                                                            <td>{{ $row->konseling->prodi->nama }}</td>
-                                                            <td>{{ $row->konseling->kelas }}</td>
+                                                            <td>{{ $row->konseling->user->prodi->nama }}</td>
+                                                            <td>{{ $row->konseling->user->kelas }}</td>
                                                             <td>{{ $row->jadwal->user->name }}</td>
                                                             <td>{{ $row->konseling->topik }}</td>
                                                             <td>{{ date('l, d F Y', strtotime($row->tanggal)) }}</td>

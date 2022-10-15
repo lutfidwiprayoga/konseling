@@ -53,8 +53,8 @@
                                                             <td>{{ $row->user->name }}</td>
                                                             <td>{{ $row->user->nim }}</td>
                                                             <td>{{ $row->user->no_hp }}</td>
-                                                            <td>{{ $row->prodi->nama }}</td>
-                                                            <td>{{ $row->kelas }}</td>
+                                                            <td>{{ $row->user->prodi->nama }}</td>
+                                                            <td>{{ $row->user->kelas }}</td>
                                                             <td>{{ $row->topik }}</td>
                                                             <td>
                                                                 <button type="button" class="btn btn-primary btn-sm"
@@ -96,8 +96,8 @@
                                                             <td>{{ $row->konseling->user->name }}</td>
                                                             <td>{{ $row->konseling->user->nim }}</td>
                                                             <td>{{ $row->konseling->user->no_hp }}</td>
-                                                            <td>{{ $row->konseling->prodi->nama }}</td>
-                                                            <td>{{ $row->konseling->kelas }}</td>
+                                                            <td>{{ $row->konseling->user->prodi->nama }}</td>
+                                                            <td>{{ $row->konseling->user->kelas }}</td>
                                                             <td>{{ $row->konseling->topik }}</td>
                                                             <td>{{ date('l, d F Y', strtotime($row->tanggal)) }}</td>
                                                             <td>{{ date('H:i', strtotime($row->waktu)) }} WIB</td>
@@ -159,14 +159,14 @@
                                                 <label class="col-sm-4 col-form-label">Program Studi</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control"
-                                                        value="{{ $row->prodi->nama }}" required readonly>
+                                                        value="{{ $row->user->prodi->nama }}" required readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group row mb-0">
                                                 <label class="col-sm-4 col-form-label">Kelas</label>
                                                 <div class="col-sm-4">
-                                                    <input type="text" class="form-control" value="{{ $row->kelas }}"
-                                                        required readonly>
+                                                    <input type="text" class="form-control"
+                                                        value="{{ $row->user->kelas }}" required readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group row mb-0">

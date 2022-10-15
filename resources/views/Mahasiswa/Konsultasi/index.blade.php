@@ -56,8 +56,8 @@
                                                             <td>{{ $row->user->name }}</td>
                                                             <td>{{ $row->user->nim }}</td>
                                                             <td>{{ $row->user->no_hp }}</td>
-                                                            <td>{{ $row->prodi->nama }}</td>
-                                                            <td>{{ $row->kelas }}</td>
+                                                            <td>{{ $row->user->prodi->nama }}</td>
+                                                            <td>{{ $row->user->kelas }}</td>
                                                             <td>{{ $row->topik }}</td>
                                                         </tr>
                                                     @endforeach
@@ -89,8 +89,8 @@
                                                             <td>{{ $row->konseling->user->name }}</td>
                                                             <td>{{ $row->konseling->user->nim }}</td>
                                                             <td>{{ $row->konseling->user->no_hp }}</td>
-                                                            <td>{{ $row->konseling->prodi->nama }}</td>
-                                                            <td>{{ $row->konseling->kelas }}</td>
+                                                            <td>{{ $row->konseling->user->prodi->nama }}</td>
+                                                            <td>{{ $row->konseling->user->kelas }}</td>
                                                             <td>{{ $row->konseling->topik }}</td>
                                                         </tr>
                                                     @endforeach
@@ -145,17 +145,15 @@
                                         <div class="form-group row mb-0">
                                             <label class="col-sm-4 col-form-label">Program Studi</label>
                                             <div class="col-sm-8">
-                                                <select class="form-control" name="prodi_id">
-                                                    @foreach ($prodi as $p)
-                                                        <option value="{{ $p->id }}">{{ $p->nama }}</option>
-                                                    @endforeach
-                                                </select>
+                                                <input type="text" class="form-control"
+                                                    value="{{ auth()->user()->prodi->nama }}" required readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row mb-0">
                                             <label class="col-sm-4 col-form-label">Kelas</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="kelas" required>
+                                                <input type="text" class="form-control"
+                                                    value="{{ auth()->user()->kelas }}" required readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row mb-0">

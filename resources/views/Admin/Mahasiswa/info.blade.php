@@ -51,6 +51,16 @@
                                     <th width="30px"><strong>:</strong></th>
                                     <th><strong>{{ $user->no_hp }}</strong></th>
                                 </tr>
+                                <tr>
+                                    <th width="50%"><strong>Program Studi Mahasiswa</strong></th>
+                                    <th width="30px"><strong>:</strong></th>
+                                    <th><strong>{{ $user->prodi->nama }}</strong></th>
+                                </tr>
+                                <tr>
+                                    <th width="50%"><strong>Kelas Mahasiswa</strong></th>
+                                    <th width="30px"><strong>:</strong></th>
+                                    <th><strong>{{ $user->kelas }}</strong></th>
+                                </tr>
                             </table>
                         </div>
                     </div>

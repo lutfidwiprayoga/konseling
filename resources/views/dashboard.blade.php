@@ -14,56 +14,93 @@
     <div class="row">
         <div class="col-md-12 grid-margin transparent">
             <div class="row">
-                <div class="col-md-3 mb-4 stretch-card transparent">
-                    <div class="card card-tale">
-                        <div class="card-body">
-                            <p class="mb-4">Jumlah Mahasiswa</p>
-                            <p class="fs-30 mb-2">1350</p>
+                @if (auth()->user()->role_user == 'mahasiswa')
+                    <div class="col-md-3 mb-4 stretch-card transparent">
+                        <div class="card card-dark-blue">
+                            <div class="card-body">
+                                <p class="mb-4">Jumlah Sudah Konsultasi</p>
+                                <p class="fs-30 mb-2">{{ $sdh_konsul_mhs }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 mb-4 stretch-card transparent">
-                    <div class="card card-light-danger">
-                        <div class="card-body">
-                            <p class="mb-4">Jumlah Mahasiswa Bermasalahan</p>
-                            <p class="fs-30 mb-2">130</p>
+                    <div class="col-md-3 mb-4 stretch-card transparent">
+                        <div class="card card-light-blue">
+                            <div class="card-body">
+                                <p class="mb-4">Sedang konsultasi</p>
+                                <p class="fs-30 mb-2">{{ $blm_konsul_mhs }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 mb-4 stretch-card transparent">
-                    <div class="card card-light-blue">
-                        <div class="card-body">
-                            <p class="mb-4">Jumlah Mahasiswa sedang konsultasi</p>
-                            <p class="fs-30 mb-2">130</p>
+                @else
+                    <div class="col-md-3 mb-4 stretch-card transparent">
+                        <div class="card card-tale">
+                            <div class="card-body">
+                                <p class="mb-4">Jumlah Mahasiswa</p>
+                                <p class="fs-30 mb-2">{{ $total_mhs }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 mb-4 stretch-card transparent">
-                    <div class="card card-dark-blue">
-                        <div class="card-body">
-                            <p class="mb-4">Jumlah Sudah Konsultasi</p>
-                            <p class="fs-30 mb-2">80</p>
+                    <div class="col-md-3 mb-4 stretch-card transparent">
+                        <div class="card card-light-danger">
+                            <div class="card-body">
+                                <p class="mb-4">Jumlah Mahasiswa Bermasalahan</p>
+                                <p class="fs-30 mb-2">{{ $bimbingan }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4 stretch-card transparent">
+                        <div class="card card-light-blue">
+                            <div class="card-body">
+                                <p class="mb-4">Jumlah Mahasiswa sedang konsultasi</p>
+                                <p class="fs-30 mb-2">{{ $blm_konsul }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4 stretch-card transparent">
+                        <div class="card card-dark-blue">
+                            <div class="card-body">
+                                <p class="mb-4">Jumlah Sudah Konsultasi</p>
+                                <p class="fs-30 mb-2">{{ $sdh_konsul }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+    @if (Auth::user()->role_user == 'admin')
+        <div class="row">
+            <div class="col-md-12 grid-margin">
+                <h3 class="font-weight-bold">Topik yang sering diangkat dalam satu tahun</h3>
+                <hr><br>
+                <div class="row">
+                    <div class="col-md-6" style="margin: 0 auto; float: none;margin-bottom: 10px;">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="rekapan"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 grid-margin">
-            <h3 class="font-weight-bold">Topik yang sering diangkat dalam satu tahun</h3>
-            <hr><br>
-            <div class="row">
-                <div class="col-md-6" style="margin: 0 auto; float: none;margin-bottom: 10px;">
-                    <div class="card">
-                        <div class="card-body">
-                            <div id="rekapan"></div>
+    @elseif (Auth::user()->role_user == 'konselor')
+        <div class="row">
+            <div class="col-md-12 grid-margin">
+                <h3 class="font-weight-bold">Topik yang sering diangkat dalam satu tahun</h3>
+                <hr><br>
+                <div class="row">
+                    <div class="col-md-6" style="margin: 0 auto; float: none;margin-bottom: 10px;">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="rekapan"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @section('javascript')
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <!--Target OA Win Java-->
@@ -90,7 +127,7 @@
                 text: 'Total Konsultasi'
             },
             xAxis: {
-                categories: ['Keluarga', 'Keuangan', 'Teman', 'Organisasi', 'Kendali Emosi', 'Lainnya'],
+                categories: {!! json_encode($topik) !!},
                 crosshair: true
             },
             yAxis: {
@@ -115,7 +152,7 @@
             },
             series: [{
                 name: 'Pembahasan Konsultasi',
-                data: [40, 20, 30, 40, 50, 100]
+                data: {!! json_encode($total_topik) !!}
             }]
         });
     </script>

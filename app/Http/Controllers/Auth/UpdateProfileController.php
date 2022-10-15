@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,8 @@ class UpdateProfileController extends Controller
     public function edit()
     {
         $user = User::where('id', Auth::user()->id)->first();
-        return view('auth.profil', compact('user'));
+        $prodi = Prodi::all();
+        return view('auth.profil', compact('user', 'prodi'));
     }
 
     public function update(Request $request)
@@ -41,6 +43,8 @@ class UpdateProfileController extends Controller
         $file->move(public_path('foto_profil'), $filename);
         $user->name = $request->name;
         $user->no_hp = $request->no_hp;
+        $user->prodi_id = $request->prodi_id;
+        $user->kelas = $request->kelas;
         $user->foto = $filename;
         $user->save();
 

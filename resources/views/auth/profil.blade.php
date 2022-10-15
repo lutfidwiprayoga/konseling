@@ -49,14 +49,51 @@
                                         @enderror
                                     </div>
                                     <div class="form-group row">
+                                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Update Program
+                                            Studi
+                                        </label>
+                                        <div class="col-sm-9">
+                                            @if (auth()->user()->prodi_id != null)
+                                                <input type="text" name="prodi_id" class="form-control form-control-lg"
+                                                    id="exampleInputPhone" value="{{ auth()->user()->prodi->nama }}"
+                                                    placeholder="Masukkan Nomor Hp/Telepon Anda" required readonly>
+                                            @else
+                                                <select name="prodi_id" class="form-control">
+                                                    <option disabled>-</option>
+                                                    @foreach ($prodi as $prod)
+                                                        <option value="{{ $prod->id }}">{{ $prod->nama }}</option>
+                                                    @endforeach
+                                                </select>
+                                            @endif
+                                        </div>
+                                        @error('prodi_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Update Kelas
+                                            Anda</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="kelas" class="form-control form-control-lg"
+                                                id="exampleInputEmail1" value="{{ auth()->user()->kelas }}">
+                                        </div>
+                                        @error('kelas')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group row">
                                         <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Update Foto
                                             Profil
                                             Anda</label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="foto" class="file-upload-default">
+                                            <input type="file" name="foto" class="file-upload-default" required>
                                             <div class="input-group col-xs-12">
                                                 <input type="file" name="foto" class="form-control file-upload-info"
-                                                    placeholder="Upload Foto Anda">
+                                                    placeholder="Upload Foto Anda" required>
                                                 <span class="input-group-append">
                                                     <button class="file-upload-browse btn btn-primary"
                                                         type="button">Upload</button>

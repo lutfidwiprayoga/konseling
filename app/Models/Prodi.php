@@ -10,12 +10,8 @@ class Prodi extends Model
     use HasFactory;
     protected $fillable = ['nama'];
 
-    public function jadwals()
+    public function users()
     {
-        return $this->hasMany(Jadwal::class);
-    }
-    public function konselings()
-    {
-        return $this->hasMany(Konseling::class);
+        return $this->hasMany(User::class);
     }
 }
