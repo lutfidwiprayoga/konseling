@@ -21,11 +21,11 @@
                             <ul class="nav nav-tabs customtab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#home1" role="tabpanel1"
-                                        aria-selected="false">Belum Bimbingan({{ $belum->count() }})</a>
+                                        aria-selected="false">Belum Bimbingan({{ $belum_bimbingan->count() }})</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#home2" role="tabpanel2"
-                                        aria-selected="false">Sudah Bimbingan({{ $sudah->count() }})</a>
+                                        aria-selected="false">Sudah Bimbingan({{ $sudah_bimbingan->count() }})</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -52,14 +52,16 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($belum as $i => $row)
+                                                    @foreach ($belum_bimbingan as $i => $row)
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
                                                             <td>{{ $row->konseling->user->name }}</td>
                                                             <td>{{ $row->konseling->user->nim }}</td>
-                                                            <td>{{ $row->konseling->user->no_hp }}</td>
-                                                            <td>{{ $row->konseling->prodi->nama }}</td>
-                                                            <td>{{ $row->konseling->kelas }}</td>
+                                                            @foreach ($row->konseling->user->mahasiswa as $data)
+                                                                <td>{{ $data->no_hp }}</td>
+                                                                <td>{{ $data->prodi }}</td>
+                                                                <td>{{ $data->kelas }}</td>
+                                                            @endforeach
                                                             <td>{{ $row->jadwal->user->name }}</td>
                                                             <td>{{ $row->konseling->topik }}</td>
                                                             <td>{{ date('l, d F Y', strtotime($row->tanggal)) }}</td>
@@ -104,14 +106,16 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($sudah as $i => $row)
+                                                    @foreach ($sudah_bimbingan as $i => $row)
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
                                                             <td>{{ $row->konseling->user->name }}</td>
                                                             <td>{{ $row->konseling->user->nim }}</td>
-                                                            <td>{{ $row->konseling->user->no_hp }}</td>
-                                                            <td>{{ $row->konseling->prodi->nama }}</td>
-                                                            <td>{{ $row->konseling->kelas }}</td>
+                                                            @foreach ($row->konseling->user->mahasiswa as $data)
+                                                                <td>{{ $data->no_hp }}</td>
+                                                                <td>{{ $data->prodi }}</td>
+                                                                <td>{{ $data->kelas }}</td>
+                                                            @endforeach
                                                             <td>{{ $row->jadwal->user->name }}</td>
                                                             <td>{{ $row->konseling->topik }}</td>
                                                             <td>{{ date('l, d F Y', strtotime($row->tanggal)) }}</td>
@@ -136,7 +140,7 @@
         </div>
     </div>
     <!-- Modal Tambah hasil Bimbingan-->
-    @foreach ($belum as $row)
+    @foreach ($belum_bimbingan as $row)
         <div class="modal fade" id="tambahBimbingan{{ $row->id }}" tabindex="-1" aria-labelledby="muridModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">

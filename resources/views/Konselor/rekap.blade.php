@@ -41,9 +41,11 @@
                                                 <td>{{ ++$i }}</td>
                                                 <td>{{ $row->konseling->user->name }}</td>
                                                 <td>{{ $row->konseling->user->nim }}</td>
-                                                <td>{{ $row->konseling->user->no_hp }}</td>
-                                                <td>{{ $row->konseling->prodi->nama }}</td>
-                                                <td>{{ $row->konseling->kelas }}</td>
+                                                @foreach ($row->konseling->user->mahasiswa as $data)
+                                                    <td>{{ $data->no_hp }}</td>
+                                                    <td>{{ $data->prodi }}</td>
+                                                    <td>{{ $data->kelas }}</td>
+                                                @endforeach
                                                 {{-- <td>{{ $row->jadwal->user->name }}</td> --}}
                                                 <td>{{ $row->konseling->topik }}</td>
                                                 <td>{{ date('l, d F Y', strtotime($row->jadwal->tanggal)) }}</td>

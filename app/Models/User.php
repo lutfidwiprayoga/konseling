@@ -18,11 +18,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'nim',
         'name',
         'username',
         'email',
-        'nim',
-        'no_hp',
         'role_user',
         'password',
         'foto',
@@ -47,12 +46,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function mahasiswa()
+    {
+        return $this->hasMany(Mahasiswa::class);
+    }
     public function konselings()
     {
         return $this->hasMany(Konseling::class);
     }
-    public function konselors()
+    public function jadwals()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Jadwal::class);
     }
 }

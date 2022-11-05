@@ -14,13 +14,24 @@
                         <div class="col-md-10">
                             <p class="card-title">Data Akun Mahasiswa</p>
                         </div>
-                        <div class="col-md-2 text-right">
+                        {{-- <div class="col-md-2 text-right">
                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                                 data-target="#userModal">
                                 Tambah Mahasiswa
                             </button>
-                        </div>
+                        </div> --}}
                     </div>
+                    <form action="{{ route('importmahasiswa.excel') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-11">
+                                <input class="form-control form-control-sm" id="formFileSm" type="file" name="file">
+                            </div>
+                            <div class="col-md-1">
+                                <button class="btn btn-primary btn-sm">Upload</button>
+                            </div>
+                        </div>
+                    </form><br>
                     <div class="row">
                         <div class="col-12">
                             <div class="table-responsive">
@@ -30,9 +41,10 @@
                                             <th>No</th>
                                             <th>NIM</th>
                                             <th>Nama</th>
-                                            <th>email</th>
-                                            <th>username</th>
+                                            <th>Email</th>
                                             <th>No HP</th>
+                                            <th>Prodi</th>
+                                            <th>Kelas</th>
                                             <th>Foto</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -42,10 +54,11 @@
                                             <tr>
                                                 <td>{{ ++$i }}</td>
                                                 <td>{{ $row->nim }}</td>
-                                                <td>{{ $row->name }}</td>
-                                                <td>{{ $row->email }}</td>
-                                                <td>{{ $row->username }}</td>
+                                                <td>{{ $row->nama }}</td>
+                                                <td>{{ $row->user->email }}</td>
                                                 <td>{{ $row->no_hp }}</td>
+                                                <td>{{ $row->prodi }}</td>
+                                                <td>{{ $row->kelas }}</td>
                                                 <td><img src="{{ url('foto_profil/' . $row->foto) }}" width="50px"></td>
                                                 <td>
                                                     <a href="{{ route('user.show', $row->id) }}"

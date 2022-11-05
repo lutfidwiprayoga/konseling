@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Mahasiswa;
+use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +22,9 @@ class UpdateProfileController extends Controller
     public function edit()
     {
         $user = User::where('id', Auth::user()->id)->first();
-        return view('auth.profil', compact('user'));
+        $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
+        $prodi = Prodi::all();
+        return view('auth.profil', compact('user', 'prodi', 'mahasiswa'));
     }
 
     public function update(Request $request)
@@ -31,21 +35,39 @@ class UpdateProfileController extends Controller
         //     'foto.mimes' => 'Format Harus JPG,JPEG,PNG !!',
         //     'foto.max' => 'Ukuran Foto Maksimal 1 MB !!',
         // ]);
+        // dd($request->all());
+        if (Auth::user()->role_user == 'mahasiswa') {
+            $id_user = Auth::user()->id;
+            $user = User::find($id_user);
+            $mahasiswa = Mahasiswa::where('user_id', $user->id)->first();
 
-        $id_user = Auth::user()->id;
-        $user = User::find($id_user);
+            //jika user update foto
+            $file = $request->foto;
+            $filename = Auth::user()->username . '.' . $file->extension();
+            $file->move(public_path('foto_profil'), $filename);
+            $user->username = $request->username;
+            $user->email = $request->email;
+            $user->foto = $filename;
+            $user->save();
+            $mahasiswa->no_hp = $request->no_hp;
+            $mahasiswa->kelas = $request->kelas;
+            $mahasiswa->prodi = $request->prodi;
+            $mahasiswa->save();
+            return redirect()->route('dashboard.index')->with('sukses', 'Profil Berhasil Di Perbarui');
+        } else {
+            $id_user = Auth::user()->id;
+            $user = User::find($id_user);
 
-        //jika user update foto
-        $file = $request->foto;
-        $filename = Auth::user()->username . '.' . $file->extension();
-        $file->move(public_path('foto_profil'), $filename);
-        $user->name = $request->name;
-        $user->no_hp = $request->no_hp;
-        $user->foto = $filename;
-        $user->save();
-
-
-        return redirect()->back()->with('sukses', 'Profil Berhasil Di Perbarui');
+            //jika user update foto
+            $file = $request->foto;
+            $filename = Auth::user()->username . '.' . $file->extension();
+            $file->move(public_path('foto_profil'), $filename);
+            $user->name = $request->name;
+            $user->username = $request->username;
+            $user->foto = $filename;
+            $user->save();
+            return redirect()->back()->with('sukses', 'Profil Berhasil Di Perbarui');
+        }
     }
     public function updatePassword(Request $request)
     {

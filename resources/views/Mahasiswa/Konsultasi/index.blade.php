@@ -47,6 +47,7 @@
                                                         <th>Program Studi</th>
                                                         <th>Kelas</th>
                                                         <th>Topik</th>
+                                                        <th>Deskripsi Permasalahan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -55,10 +56,13 @@
                                                             <td>{{ ++$i }}</td>
                                                             <td>{{ $row->user->name }}</td>
                                                             <td>{{ $row->user->nim }}</td>
-                                                            <td>{{ $row->user->no_hp }}</td>
-                                                            <td>{{ $row->prodi->nama }}</td>
-                                                            <td>{{ $row->kelas }}</td>
+                                                            @foreach ($row->user->mahasiswa as $data)
+                                                                <td>{{ $data->no_hp }}</td>
+                                                                <td>{{ $data->prodi }}</td>
+                                                                <td>{{ $data->kelas }}</td>
+                                                            @endforeach
                                                             <td>{{ $row->topik }}</td>
+                                                            <td>{{ $row->deskripsi }}</td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -88,9 +92,11 @@
                                                             <td>{{ ++$i }}</td>
                                                             <td>{{ $row->konseling->user->name }}</td>
                                                             <td>{{ $row->konseling->user->nim }}</td>
-                                                            <td>{{ $row->konseling->user->no_hp }}</td>
-                                                            <td>{{ $row->konseling->prodi->nama }}</td>
-                                                            <td>{{ $row->konseling->kelas }}</td>
+                                                            @foreach ($row->konseling->user->mahasiswa as $data)
+                                                                <td>{{ $data->no_hp }}</td>
+                                                                <td>{{ $data->prodi }}</td>
+                                                                <td>{{ $data->kelas }}</td>
+                                                            @endforeach
                                                             <td>{{ $row->konseling->topik }}</td>
                                                         </tr>
                                                     @endforeach
@@ -136,29 +142,6 @@
                                             </div>
                                         </div>
                                         <div class="form-group row mb-0">
-                                            <label class="col-sm-4 col-form-label">No Hp</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control"
-                                                    value="{{ auth()->user()->no_hp }}" required readonly>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mb-0">
-                                            <label class="col-sm-4 col-form-label">Program Studi</label>
-                                            <div class="col-sm-8">
-                                                <select class="form-control" name="prodi_id">
-                                                    @foreach ($prodi as $p)
-                                                        <option value="{{ $p->id }}">{{ $p->nama }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mb-0">
-                                            <label class="col-sm-4 col-form-label">Kelas</label>
-                                            <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="kelas" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mb-0">
                                             <label class="col-sm-4 col-form-label">Topik</label>
                                             <div class="col-sm-8">
                                                 <select class="form-control" name="topik">
@@ -169,6 +152,12 @@
                                                     <option value="Organisasi">Organisasi</option>
                                                     <option value="Lainnya">Lainnya</option>
                                                 </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-0">
+                                            <label class="col-sm-4 col-form-label">Isi Permasalahan</label>
+                                            <div class="col-sm-8">
+                                                <textarea name="deskripsi" id="" cols="30" rows="10" class="form-control"></textarea>
                                             </div>
                                         </div>
                                     </div>

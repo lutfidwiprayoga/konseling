@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ExcelController;
 use App\Http\Controllers\Admin\RekapDataController as AdminRekapDataController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\UpdateProfileController;
@@ -48,4 +49,5 @@ Route::prefix('konselor')->group(function () {
 Route::prefix('admin')->group(function () {
     Route::resource('/rekapdata-admin', AdminRekapDataController::class);
     Route::resource('/user', UserController::class);
+    Route::post('/importmahasiswa', [ExcelController::class, 'import'])->name('importmahasiswa.excel');
 });

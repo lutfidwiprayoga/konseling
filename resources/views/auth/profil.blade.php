@@ -22,11 +22,24 @@
                                 <form method="POST" action="{{ route('profil.update') }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Update Nama
+                                        <label for="exampleInputNim" class="col-sm-3 col-form-label">NIM
                                             Anda</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="name" class="form-control form-control-lg"
-                                                id="exampleInputEmail1" value="{{ auth()->user()->name }}">
+                                            <input type="text" class="form-control form-control-lg" id="exampleInputNim"
+                                                value="{{ auth()->user()->nim }}" readonly>
+                                        </div>
+                                        @error('nim')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleInputName2" class="col-sm-3 col-form-label">Update Nama
+                                            Anda</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control form-control-lg"
+                                                id="exampleInputName2" value="{{ auth()->user()->name }}">
                                         </div>
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -35,12 +48,39 @@
                                         @enderror
                                     </div>
                                     <div class="form-group row">
-                                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Update No Hp
+                                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email
+                                            Anda</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" name="email" class="form-control form-control-lg"
+                                                id="exampleInputEmail2" value="{{ auth()->user()->email }}">
+                                        </div>
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Update Username
+                                            Anda</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="username" class="form-control form-control-lg"
+                                                id="exampleInputUsername2" placeholder="Masukkan Username Baru Anda"
+                                                value="{{ auth()->user()->username }}">
+                                        </div>
+                                        @error('username')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleInputPhone" class="col-sm-3 col-form-label">Update No Hp
                                             Anda</label>
                                         <div class="col-sm-9">
                                             <input type="number" name="no_hp" class="form-control form-control-lg"
-                                                id="exampleInputPhone" value="{{ auth()->user()->no_hp }}"
-                                                placeholder="Masukkan Nomor Hp/Telepon Anda" required>
+                                                id="exampleInputPhone" placeholder="Masukkan Nomor Hp/Telepon Anda"
+                                                value="{{ $mahasiswa->no_hp }}">
                                         </div>
                                         @error('no_hp')
                                             <span class="invalid-feedback" role="alert">
@@ -49,14 +89,50 @@
                                         @enderror
                                     </div>
                                     <div class="form-group row">
-                                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Update Foto
+                                        <label for="exampleInputProdi" class="col-sm-3 col-form-label">Update Program
+                                            Studi
+                                        </label>
+                                        <div class="col-sm-9">
+                                            @if ($mahasiswa->prodi != null)
+                                                <input type="text" class="form-control form-control-lg"
+                                                    id="exampleIInputProdi" value="{{ $mahasiswa->prodi }}" readonly>
+                                            @else
+                                                <select name="prodi" class="form-control">
+                                                    <option disabled>-</option>
+                                                    @foreach ($prodi as $prod)
+                                                        <option value="{{ $prod->nama }}">{{ $prod->nama }}</option>
+                                                    @endforeach
+                                                </select>
+                                            @endif
+                                        </div>
+                                        @error('prodi')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleInputKelas" class="col-sm-3 col-form-label">Update Kelas
+                                            Anda</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="kelas" class="form-control form-control-lg"
+                                                id="exampleInputKelas" value="{{ $mahasiswa->kelas }}">
+                                        </div>
+                                        @error('kelas')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleInputPhotos" class="col-sm-3 col-form-label">Update Foto
                                             Profil
                                             Anda</label>
                                         <div class="col-sm-9">
                                             <input type="file" name="foto" class="file-upload-default">
                                             <div class="input-group col-xs-12">
-                                                <input type="file" name="foto" class="form-control file-upload-info"
-                                                    placeholder="Upload Foto Anda">
+                                                <input type="file" name="foto"
+                                                    class="form-control file-upload-info" placeholder="Upload Foto Anda">
                                                 <span class="input-group-append">
                                                     <button class="file-upload-browse btn btn-primary"
                                                         type="button">Upload</button>
@@ -81,7 +157,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 grid-margin stretch-card">
+            <div class="col-md-6 grid-margin">
                 <div class="card">
                     <div class="card-body">
                         <p class="card-title">Update password Anda</p>
@@ -90,11 +166,11 @@
                                 <form method="POST" action="{{ route('password.ganti') }}">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Password Lama
+                                        <label for="exampleInputOldPassword" class="col-sm-3 col-form-label">Password Lama
                                             Anda</label>
                                         <div class="col-sm-9">
                                             <input type="password" name="current_password"
-                                                class="form-control form-control-lg" id="exampleInputEmail1"
+                                                class="form-control form-control-lg" id="exampleInputOldPassword"
                                                 placeholder="Masukkan Password Lama Anda">
                                         </div>
                                         @error('current_password')
@@ -104,7 +180,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group row">
-                                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Password Baru
+                                        <label for="exampleInputNewPassword" class="col-sm-3 col-form-label">Password Baru
                                             Anda</label>
                                         <div class="col-sm-9">
                                             <input type="password" name="password" class="form-control form-control-lg"
@@ -117,7 +193,8 @@
                                         @enderror
                                     </div>
                                     <div class="form-group row">
-                                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Konfirmasi
+                                        <label for="exampleInputPasswordConfirm"
+                                            class="col-sm-3 col-form-label">Konfirmasi
                                             Password
                                             Baru</label>
                                         <div class="col-sm-9">
@@ -149,11 +226,11 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Update Nama
+                                        <label for="exampleInpuName2" class="col-sm-3 col-form-label">Update Nama
                                             Anda</label>
                                         <div class="col-sm-9">
                                             <input type="text" name="name" class="form-control form-control-lg"
-                                                id="exampleInputEmail1" value="{{ auth()->user()->name }}">
+                                                id="exampleInputName2" value="{{ auth()->user()->name }}">
                                         </div>
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -162,14 +239,27 @@
                                         @enderror
                                     </div>
                                     <div class="form-group row">
-                                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Update No Hp
+                                        <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Email
                                             Anda</label>
                                         <div class="col-sm-9">
-                                            <input type="number" name="no_hp" class="form-control form-control-lg"
-                                                id="exampleInputPhone" value="{{ auth()->user()->no_hp }}"
-                                                placeholder="Masukkan Nomor Hp/Telepon Anda" required>
+                                            <input type="email" class="form-control form-control-lg"
+                                                id="exampleInputEmail1" value="{{ auth()->user()->email }}" readonly>
                                         </div>
-                                        @error('no_hp')
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Update Username
+                                            Anda</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="username" class="form-control form-control-lg"
+                                                id="exampleInputUsername2" value="{{ auth()->user()->username }}"
+                                                placeholder="Masukkan Username Baru Anda" required>
+                                        </div>
+                                        @error('username')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

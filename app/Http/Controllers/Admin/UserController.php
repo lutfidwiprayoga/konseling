@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Mahasiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::where('role_user', 'mahasiswa')->get();
+        $user = Mahasiswa::join('users', 'mahasiswas.user_id', '=', 'users.id')
+            ->where('users.role_user', 'mahasiswa')->get();
         return view('Admin.Mahasiswa.index', compact('user'));
     }
 
@@ -59,7 +61,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('Admin.Mahasiswa.info', compact('user'));
+        $mahasiswa = Mahasiswa::where('user_id', $user->id)->first();
+        return view('Admin.Mahasiswa.info', compact('user', 'mahasiswa'));
     }
 
     /**

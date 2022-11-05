@@ -52,9 +52,11 @@
                                                             <td>{{ ++$i }}</td>
                                                             <td>{{ $row->user->name }}</td>
                                                             <td>{{ $row->user->nim }}</td>
-                                                            <td>{{ $row->user->no_hp }}</td>
-                                                            <td>{{ $row->prodi->nama }}</td>
-                                                            <td>{{ $row->kelas }}</td>
+                                                            @foreach ($row->user->mahasiswa as $data)
+                                                                <td>{{ $data->no_hp }}</td>
+                                                                <td>{{ $data->prodi }}</td>
+                                                                <td>{{ $data->kelas }}</td>
+                                                            @endforeach
                                                             <td>{{ $row->topik }}</td>
                                                             <td>
                                                                 <button type="button" class="btn btn-primary btn-sm"
@@ -95,9 +97,11 @@
                                                             <td>{{ ++$i }}</td>
                                                             <td>{{ $row->konseling->user->name }}</td>
                                                             <td>{{ $row->konseling->user->nim }}</td>
-                                                            <td>{{ $row->konseling->user->no_hp }}</td>
-                                                            <td>{{ $row->konseling->prodi->nama }}</td>
-                                                            <td>{{ $row->konseling->kelas }}</td>
+                                                            @foreach ($row->konseling->user->mahasiswa as $data)
+                                                                <td>{{ $data->no_hp }}</td>
+                                                                <td>{{ $data->prodi }}</td>
+                                                                <td>{{ $data->kelas }}</td>
+                                                            @endforeach
                                                             <td>{{ $row->konseling->topik }}</td>
                                                             <td>{{ date('l, d F Y', strtotime($row->tanggal)) }}</td>
                                                             <td>{{ date('H:i', strtotime($row->waktu)) }} WIB</td>
@@ -146,34 +150,6 @@
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control"
                                                         value="{{ $row->user->nim }}" required readonly>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row mb-0">
-                                                <label class="col-sm-4 col-form-label">No Hp</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control"
-                                                        value="{{ $row->user->no_hp }}" required readonly>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row mb-0">
-                                                <label class="col-sm-4 col-form-label">Program Studi</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control"
-                                                        value="{{ $row->prodi->nama }}" required readonly>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row mb-0">
-                                                <label class="col-sm-4 col-form-label">Kelas</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" value="{{ $row->kelas }}"
-                                                        required readonly>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row mb-0">
-                                                <label class="col-sm-4 col-form-label">Topik Permasalahan</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control"
-                                                        value="{{ $row->topik }}" required readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group row mb-0">

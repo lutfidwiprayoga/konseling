@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Bimbingan;
 use App\Models\Jadwal;
 use App\Models\Konseling;
+use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,10 +22,12 @@ class KonsultasiController extends Controller
 
     public function index()
     {
-        $pengajuan = Konseling::where('user_id', Auth::user()->id)->join('jadwals', 'konselings.id', '=', 'jadwals.konseling_id')
+        $pengajuan = Konseling::join('jadwals', 'konselings.id', '=', 'jadwals.konseling_id')
+            ->where('user_id', Auth::user()->id)
             ->where('jadwals.status', '=', 'Pengajuan')
             ->get();
-        $terdaftar = Jadwal::where('user_id', Auth::user()->id)->join('konselings', 'jadwals.konseling_id', '=', 'konselings.id')
+        $terdaftar = Jadwal::join('konselings', 'jadwals.konseling_id', '=', 'konselings.id')
+            ->where('konselings.user_id', Auth::user()->id)
             ->where('status', 'Terdaftar')
             ->get();
         $prodi = Prodi::all();
@@ -51,9 +54,8 @@ class KonsultasiController extends Controller
     {
         $konsul = Konseling::create([
             'user_id' => Auth::user()->id,
-            'prodi_id' => $request->prodi_id,
-            'kelas' => $request->kelas,
             'topik' => $request->topik,
+            'deskripsi' => $request->deskripsi,
         ]);
         $jadwal = new Jadwal();
         $jadwal->konseling_id = $konsul->id;
@@ -62,6 +64,7 @@ class KonsultasiController extends Controller
 
         $bimbingan = new Bimbingan();
         $bimbingan->konseling_id = $konsul->id;
+        $bimbingan->jadwal_id = $jadwal->id;
         $bimbingan->save();
 
         return redirect()->back()->with('sukses', 'Pengajuan Konsultasi Berhasil');
