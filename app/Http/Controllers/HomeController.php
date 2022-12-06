@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->role_user == 'mahasiswa') {
+        if (Auth::user()->role_user == 'mahasiswa' && Auth::user()->email == null) {
             $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
             $prodi = Prodi::all();
             return view('auth.profil', compact('mahasiswa', 'prodi'));

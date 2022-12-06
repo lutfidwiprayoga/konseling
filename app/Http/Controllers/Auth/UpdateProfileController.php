@@ -43,9 +43,8 @@ class UpdateProfileController extends Controller
 
             //jika user update foto
             $file = $request->foto;
-            $filename = Auth::user()->username . '.' . $file->extension();
+            $filename = Auth::user()->email . '.' . $file->extension();
             $file->move(public_path('foto_profil'), $filename);
-            $user->username = $request->username;
             $user->email = $request->email;
             $user->foto = $filename;
             $user->save();

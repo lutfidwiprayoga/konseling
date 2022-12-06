@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2022 at 12:37 PM
+-- Generation Time: Nov 06, 2022 at 06:31 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -140,7 +140,7 @@ CREATE TABLE `mahasiswas` (
 INSERT INTO `mahasiswas` (`id`, `user_id`, `nim`, `nama`, `no_hp`, `kelas`, `prodi`, `created_at`, `updated_at`) VALUES
 (1, 2, '361955401001', 'Ahmad Hisyam', NULL, NULL, NULL, '2022-11-04 01:30:53', '2022-11-04 01:30:53'),
 (2, 3, '361955401002', 'Muhammad Ishaq', NULL, NULL, NULL, '2022-11-04 01:30:53', '2022-11-04 01:30:53'),
-(3, 4, '361955401003', 'Muhammad Baihaqi', NULL, NULL, NULL, '2022-11-04 01:30:53', '2022-11-04 01:30:53'),
+(3, 4, '361955401003', 'Muhammad Baihaqi', '089822124422', '3F', 'D3 Teknik Sipil', '2022-11-04 01:30:53', '2022-11-05 22:30:34'),
 (4, 5, '361955401004', 'Muhammad Sumbul', '082221233342', '3B', 'D4 Teknologi Rekayasa Perangkat Lunak', '2022-11-04 01:30:53', '2022-11-05 03:13:34'),
 (5, 6, '361955401005', 'Ahmad Ustman Kannabawi', '081221312244', '4C', 'D4 Agribisnis', '2022-11-04 01:30:53', '2022-11-05 04:10:51'),
 (6, 7, '361955401006', 'Khalid Khasmiri', NULL, NULL, NULL, '2022-11-04 01:30:53', '2022-11-04 01:30:53'),
@@ -279,7 +279,7 @@ INSERT INTO `users` (`id`, `nim`, `name`, `email`, `username`, `role_user`, `ema
 (1, NULL, 'Admin', 'admin@gmail.com', 'admin', 'admin', '2022-11-04 00:04:28', '$2y$10$LcRkDTxonfiAP.exhLEIceduQsTsalS.2JPbPzhXBQ4u64VcbffVC', 'admin.jpg', NULL, '2022-11-04 00:04:28', '2022-11-05 00:28:21'),
 (2, '361955401001', 'Ahmad Hisyam', NULL, NULL, 'mahasiswa', NULL, '$2y$10$5cDWNxVbJ6iqHl7.hQUokuo1jHLnNgsXEwUsdQ3corBAYJJ0jWhqy', NULL, NULL, '2022-11-04 01:30:53', '2022-11-04 01:30:53'),
 (3, '361955401002', 'Muhammad Ishaq', NULL, NULL, 'mahasiswa', NULL, '$2y$10$TWJILks83M9r2U16b1iZteRhGQ7zbpyYsfGr5ojX70LtPI/SG5KTu', NULL, NULL, '2022-11-04 01:30:53', '2022-11-04 01:30:53'),
-(4, '361955401003', 'Muhammad Baihaqi', NULL, NULL, 'mahasiswa', NULL, '$2y$10$ulXetU43L6fccZV/VE10uuh5NrG2lSUBqkDaKAfnFKjaDw2hbueX6', NULL, NULL, '2022-11-04 01:30:53', '2022-11-04 01:30:53'),
+(4, '361955401003', 'Muhammad Baihaqi', 'mbaihaqi@gmail.com', NULL, 'mahasiswa', NULL, '$2y$10$ulXetU43L6fccZV/VE10uuh5NrG2lSUBqkDaKAfnFKjaDw2hbueX6', '.png', NULL, '2022-11-04 01:30:53', '2022-11-05 22:30:34'),
 (5, '361955401004', 'Muhammad Sumbul', 'muhsumbul@gmail.com', 'muh_sumbul', 'mahasiswa', '2022-11-05 06:59:29', '$2y$10$pLqPzdb.tDPFuVkR6f9hRePDJtmMvJDdEFYovSE717oO9/fXKGVwe', 'muh_sumbul.png', NULL, '2022-11-04 01:30:53', '2022-11-05 03:06:31'),
 (6, '361955401005', 'Ahmad Ustman Kannabawi', 'ustman@gmail.com', 'ahm_ustman', 'mahasiswa', NULL, '$2y$10$5blSg5RGaJXCwaR9h4Nqx.ff4/gWikCpvC4R2h5RYI54Bu53OrR4e', '.png', NULL, '2022-11-04 01:30:53', '2022-11-05 04:10:51'),
 (7, '361955401006', 'Khalid Khasmiri', NULL, NULL, 'mahasiswa', NULL, '$2y$10$nDqum8eJBxL/8enLXs/td.hzPQUX6ZMrRS81W1RxHEBGLWxOIQWIi', NULL, NULL, '2022-11-04 01:30:53', '2022-11-04 01:30:53'),

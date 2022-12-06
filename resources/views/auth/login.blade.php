@@ -1,41 +1,53 @@
 @extends('auth.layouts.app')
-
-@section('auth')
-    <div class="row w-100 mx-0">
-        <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                <div class="brand-logo text-center">
-                    <img src="{{ asset('template') }}/images/BK-Poliwangi.svg" style="width: 200px">
+@section('auth-content')
+    <div class="container mt--8 pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7">
+                <div class="card bg-secondary shadow border-0">
+                    <div class="card-body px-lg-5 py-lg-5">
+                        <div class="text-center text-muted mb-4">
+                            <p>Silahkan isi form login berikut</p>
+                        </div>
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="form-group mb-3">
+                                <div class="input-group input-group-alternative">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                    </div>
+                                    <input class="form-control" placeholder="Masukkan Email atau NIM" type="text"
+                                        name="username">
+                                    @error('username')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-alternative">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                    </div>
+                                    <input class="form-control" placeholder="Password" type="password" name="password">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary w-100 my-4">Sign in</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <h4>Selamat Datang di BK Poliwangi</h4>
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
-                    <div class="form-group">
-                        <input type="text" name="username" class="form-control form-control-lg" id="exampleInputEmail1"
-                            placeholder="Masukkan NIM atau Email">
-                        @error('username')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <a href="{{ route('password.request') }}" class="text-white"><small>Forgot password?</small></a>
                     </div>
-                    <div class="form-group">
-                        <input type="password" name="password" class="form-control form-control-lg"
-                            id="exampleInputPassword1" placeholder="Password">
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="mt-3">
-                        <button type="submit"
-                            class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">MASUK</button>
-                    </div>
-                    <div class="my-2 d-flex justify-content-between align-items-center">
-                        <a href="{{ route('password.request') }}" class="auth-link text-primary">Forgot password?</a>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

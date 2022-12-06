@@ -39,7 +39,7 @@
                                             Anda</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control form-control-lg"
-                                                id="exampleInputName2" value="{{ auth()->user()->name }}">
+                                                id="exampleInputName2" value="{{ auth()->user()->name }}" readonly>
                                         </div>
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -51,24 +51,15 @@
                                         <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email
                                             Anda</label>
                                         <div class="col-sm-9">
-                                            <input type="email" name="email" class="form-control form-control-lg"
-                                                id="exampleInputEmail2" value="{{ auth()->user()->email }}">
+                                            @if (auth()->user()->email == null)
+                                                <input type="email" name="email" class="form-control form-control-lg"
+                                                    id="exampleInputEmail2" value="{{ auth()->user()->email }}" required>
+                                            @else
+                                                <input type="email" class="form-control form-control-lg"
+                                                    id="exampleInputEmail2" value="{{ auth()->user()->email }}" readonly>
+                                            @endif
                                         </div>
                                         @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Update Username
-                                            Anda</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="username" class="form-control form-control-lg"
-                                                id="exampleInputUsername2" placeholder="Masukkan Username Baru Anda"
-                                                value="{{ auth()->user()->username }}">
-                                        </div>
-                                        @error('username')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -80,7 +71,7 @@
                                         <div class="col-sm-9">
                                             <input type="number" name="no_hp" class="form-control form-control-lg"
                                                 id="exampleInputPhone" placeholder="Masukkan Nomor Hp/Telepon Anda"
-                                                value="{{ $mahasiswa->no_hp }}">
+                                                value="{{ $mahasiswa->no_hp }}" required>
                                         </div>
                                         @error('no_hp')
                                             <span class="invalid-feedback" role="alert">
@@ -116,7 +107,7 @@
                                             Anda</label>
                                         <div class="col-sm-9">
                                             <input type="text" name="kelas" class="form-control form-control-lg"
-                                                id="exampleInputKelas" value="{{ $mahasiswa->kelas }}">
+                                                id="exampleInputKelas" value="{{ $mahasiswa->kelas }}" required>
                                         </div>
                                         @error('kelas')
                                             <span class="invalid-feedback" role="alert">
@@ -129,15 +120,16 @@
                                             Profil
                                             Anda</label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="foto" class="file-upload-default">
-                                            <div class="input-group col-xs-12">
+                                            <input type="file" name="foto" class="form-control file-upload-info"
+                                                required>
+                                            {{-- <div class="input-group col-xs-12">
                                                 <input type="file" name="foto"
                                                     class="form-control file-upload-info" placeholder="Upload Foto Anda">
                                                 <span class="input-group-append">
                                                     <button class="file-upload-browse btn btn-primary"
                                                         type="button">Upload</button>
                                                 </span>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         @error('foto')
                                             <span class="invalid-feedback" role="alert">

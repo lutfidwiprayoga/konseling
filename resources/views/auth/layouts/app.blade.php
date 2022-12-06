@@ -2,46 +2,45 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>BK Politeknik Negeri Banyuwangi</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('template') }}/vendors/feather/feather.css">
-    <link rel="stylesheet" href="{{ asset('template') }}/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="{{ asset('template') }}/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="{{ asset('template') }}/css/vertical-layout-light/style.css">
-    <!-- endinject -->
-    <link rel="shortcut icon" href="{{ asset('template') }}/images/logo-poliwangi.png" />
+    <title>
+        BK Politeknik Negeri Banyuwangi
+    </title>
+    <!-- Favicon -->
+    <link href="{{ asset('frontend-login') }}/assets/img/brand/favicon.png" rel="icon" type="image/png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!-- Icons -->
+    <link href="{{ asset('frontend-login') }}/assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+    <link href="{{ asset('frontend-login') }}/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css"
+        rel="stylesheet" />
+    <!-- CSS Files -->
+    <link href="{{ asset('frontend-login') }}/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
+    <link rel="shortcut icon" href="{{ asset('frontend-login') }}/assets/img/logo-poliwangi.png" />
 </head>
 
-<body>
-    <div class="container-scroller">
-        <div class="container-fluid page-body-wrapper full-page-wrapper">
-            <div class="content-wrapper d-flex align-items-center auth px-0">
-                @yield('auth')
-            </div>
-            <!-- content-wrapper ends -->
-        </div>
-        <!-- page-body-wrapper ends -->
+<body class="bg-default">
+    <div class="main-content">
+        <!-- Header -->
+        @include('auth.layouts.header')
+        <!-- Page content -->
+        @yield('auth-content')
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="{{ asset('template') }}/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{ asset('template') }}/js/off-canvas.js"></script>
-    <script src="{{ asset('template') }}/js/hoverable-collapse.js"></script>
-    <script src="{{ asset('template') }}/js/template.js"></script>
-    <script src="{{ asset('template') }}/js/settings.js"></script>
-    <script src="{{ asset('template') }}/js/todolist.js"></script>
-    <!-- endinject -->
+    <!--   Core   -->
+    <script src="{{ asset('frontend-login') }}/assets/js/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="{{ asset('frontend-login') }}/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!--   Optional JS   -->
+    <!--   Argon JS   -->
+    <script src="{{ asset('frontend-login') }}/assets/js/argon-dashboard.min.js?v=1.1.2"></script>
+    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+    <script>
+        window.TrackJS &&
+            TrackJS.install({
+                token: "ee6fab19c5a04ac1a32a645abde4613a",
+                application: "argon-dashboard-free"
+            });
+    </script>
 </body>
 
 </html>
